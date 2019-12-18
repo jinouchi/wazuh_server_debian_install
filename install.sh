@@ -20,6 +20,9 @@ else
   exit
 fi
 
+# Install curl
+apt-get install curl
+
 # Add Repos:
 # Install Wazuh GPG key:
 curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
@@ -43,7 +46,7 @@ apt-get update
 
 # Wazuh
 # Install pre-requisites
-apt-get install curl apt-transport-https lsb-release gnupg2 -y
+apt-get install apt-transport-https lsb-release gnupg2 -y
 
 # Install Wazuh server
 apt-get install wazuh-manager -y
