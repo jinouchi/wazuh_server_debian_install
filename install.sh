@@ -25,14 +25,14 @@ apt-get install curl apt-transport-https -y
 
 # Add Repos:
 # Install Wazuh GPG key and repository:
-if [[ $(ls /etc/apt/sources.list.d/wazuh.list > /dev/null; echo $?) -ne 0 ]]
+if [[ $(ls /etc/apt/sources.list.d/wazuh.list > /dev/null 2>&1 ; echo $?) -ne 0 ]]
 then 
   curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
   echo "deb https://packages.wazuh.com/3.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
 fi
 
 # Add the Elastic repository and its GPG key:
-if [[ $(ls /etc/apt/sources.list.d/elastic-7.x.list > /dev/null ; echo $?) -ne 0 ]]
+if [[ $(ls /etc/apt/sources.list.d/elastic-7.x.list > /dev/null 2>&1 ; echo $?) -ne 0 ]]
 then
   curl -s https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
   echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee /etc/apt/sources.list.d/elastic-7.x.list
