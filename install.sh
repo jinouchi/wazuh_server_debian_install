@@ -15,7 +15,7 @@ fi
 # Add the Wazuh repo
 # Install pre-requisites
 apt-get update
-apt-get install curl apt-transport-https lsb-release gnupg2 -y
+apt-get install curl apt-transport-https lsb-release gnupg2 sudo -y
 
 # Install the GPG key:
 curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
