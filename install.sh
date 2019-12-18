@@ -21,7 +21,7 @@ else
 fi
 
 # Install curl
-apt-get install curl apt-transport-https -y
+apt-get install curl apt-transport-https gnupg2 -y
 
 # Add Repos:
 # Install Wazuh GPG key and repository:
@@ -44,7 +44,7 @@ apt-get update
 
 # Wazuh
 # Install pre-requisites
-apt-get install apt-transport-https lsb-release gnupg2 -y
+apt-get install lsb-release -y
 
 # Install Wazuh server
 apt-get install wazuh-manager -y
