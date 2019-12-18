@@ -21,24 +21,22 @@ else
 fi
 
 # Install curl
-apt-get install curl -y
+apt-get install curl apt-transport-https -y
 
 # Add Repos:
-# Install Wazuh GPG key:
-curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
-
-# Add Wazuh repository:
-echo "deb https://packages.wazuh.com/3.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
-
-# Add the Elastic repository and its GPG key:
-apt-get install curl apt-transport-https
-curl -s https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee /etc/apt/sources.list.d/elastic-7.x.list
+# Install Wazuh GPG key and repository:
+if [[ $(ls /etc/apt/sources.list.d/wazuh.list > /dev/null; echo $?) -ne 0 ]]
+then 
+  curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
+  echo "deb https://packages.wazuh.com/3.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
+fi
 
 # Add the Elastic repository and its GPG key:
-apt-get install curl apt-transport-https
-curl -s https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee /etc/apt/sources.list.d/elastic-7.x.list
+if [[ $(ls /etc/apt/sources.list.d/elastic-7.x.list > /dev/null ; echo $?) -ne 0 ]]
+then
+  curl -s https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+  echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee /etc/apt/sources.list.d/elastic-7.x.list
+fi
 
 # Refresh apt 
 apt-get update
@@ -91,10 +89,6 @@ systemctl start filebeat.service
 # Install the Elasticsearch package:
 apt-get install elasticsearch=7.5.0
 
-# Start Daemon
-systemctl daemon-reload
-systemctl enable elasticsearch.service
-systemctl start elasticsearch.service
 
 # Load the Filebeat template.
 filebeat setup --index-management -E setup.template.json.enabled=false
@@ -136,6 +130,12 @@ echo 'network.host: <elasticsearch_ip>'
 echo 'Further configuration will be necessary after changing the network.host option. Add or edit (if commented) the following lines in the file /etc/elasticsearch/elasticsearch.yml:'
 echo 'node.name: <node_name>'
 echo 'cluster.initial_master_nodes: ["<node_name>"]'
+# Start Daemon
+echo
+echo 'After configuration is complete, start the daemon:'
+echo 'systemctl daemon-reload'
+echo 'systemctl enable elasticsearch.service'
+echo 'systemctl start elasticsearch.service'
 echo
 echo "==========Final Steps: Kibana=========="
 echo 'Kibana will only listen on the loopback interface (localhost) by default, which means that it can be only accessed from the same machine. To access Kibana from the outside make it listen on its network IP by editing the file /etc/kibana/kibana.yml, uncomment the setting server.host, and change the value to:'
