@@ -115,19 +115,20 @@ apt-get update
 
 
 # Final Steps:
-echo "Final Steps: Filebeat"
+echo
+echo "==========Final Steps: Filebeat=========="
 echo 'Edit the file /etc/filebeat/filebeat.yml and replace YOUR_ELASTIC_SERVER_IP with the IP address or the hostname of the Elasticsearch server. For example:'
 echo "output.elasticsearch.hosts: ['http://YOUR_ELASTIC_SERVER_IP:9200']"
 echo "Restart FileBeat: systemctl start filebeat.service"
 echo
-echo "Final Steps: Elasticsearch"
+echo "==========Final Steps: Elasticsearch=========="
 echo "Elasticsearch will only listen on the loopback interface (localhost) by default. Configure Elasticsearch to listen to a non-loopback address by editing the file /etc/elasticsearch/elasticsearch.yml and uncommenting the setting network.host. Change the value to the IP you want to bind it to:"
 echo "\tnetwork.host: <elasticsearch_ip>"
 echo "Further configuration will be necessary after changing the network.host option. Add or edit (if commented) the following lines in the file /etc/elasticsearch/elasticsearch.yml:"
 echo "\tnode.name: <node_name>"
 echo "\tcluster.initial_master_nodes: ["<node_name>"]"
 echo
-echo "Final Steps: Kibana"
+echo "==========Final Steps: Kibana=========="
 echo "Kibana will only listen on the loopback interface (localhost) by default, which means that it can be only accessed from the same machine. To access Kibana from the outside make it listen on its network IP by editing the file /etc/kibana/kibana.yml, uncomment the setting server.host, and change the value to:"
 echo "\tserver.host: \"<kibana_ip>\""
 echo "Configure the URLs of the Elasticsearch instances to use for all your queries. By editing the file /etc/kibana/kibana.yml:"
