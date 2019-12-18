@@ -21,7 +21,7 @@ else
 fi
 
 # Install curl
-apt-get install curl
+apt-get install curl -y
 
 # Add Repos:
 # Install Wazuh GPG key:
