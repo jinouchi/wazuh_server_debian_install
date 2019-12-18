@@ -58,11 +58,11 @@ else
   curl -sL https://deb.nodesource.com/setup_8.x | bash -
 fi
 
-apt-get install nodejs
+apt-get install nodejs -y
 
 
 # Install the Wazuh API. It will update NodeJS if it is required:
-apt-get install wazuh-api
+apt-get install wazuh-api -y
 
 
 # Filebeat
