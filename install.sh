@@ -115,12 +115,12 @@ apt-get update
 
 
 # Final Steps:
-echo "Final Steps: Filebeat
+echo "Final Steps: Filebeat"
 echo 'Edit the file /etc/filebeat/filebeat.yml and replace YOUR_ELASTIC_SERVER_IP with the IP address or the hostname of the Elasticsearch server. For example:'
 echo "output.elasticsearch.hosts: ['http://YOUR_ELASTIC_SERVER_IP:9200']"
 echo "Restart FileBeat: systemctl start filebeat.service"
 echo
-echo "Final Steps: Elasticsearch
+echo "Final Steps: Elasticsearch"
 echo "Elasticsearch will only listen on the loopback interface (localhost) by default. Configure Elasticsearch to listen to a non-loopback address by editing the file /etc/elasticsearch/elasticsearch.yml and uncommenting the setting network.host. Change the value to the IP you want to bind it to:"
 echo "\tnetwork.host: <elasticsearch_ip>"
 echo "Further configuration will be necessary after changing the network.host option. Add or edit (if commented) the following lines in the file /etc/elasticsearch/elasticsearch.yml:"
