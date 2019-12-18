@@ -10,7 +10,7 @@ then
 fi
   
 # Variables:
-if [[ "$DEB_VER == "" ]]; then DEB_VER=$(cat /etc/issue | sed 's/Debian GNU\/Linux \(.*\) \\n \\l/\1/'); fi
+if [[ "$DEB_VER" == "" ]]; then DEB_VER=$(cat /etc/issue | sed 's/Debian GNU\/Linux \(.*\) \\n \\l/\1/'); fi
 if [[ "$DEB_VER" -gt 6 ]]
 then
   echo "Debian version detected successfully. Detected version: $DEB_VER"
