@@ -16,7 +16,7 @@ then
   echo "Debian version detected successfully. Detected version: $DEB_VER"
 else
   echo "Debian version could not be detected from /etc/issue. Exiting."
-  echo "If you know which version of debian you are using, export the variable: export DEB_VER=9
+  echo "If you know which version of debian you are using, export the variable: export DEB_VER=9"
   exit
 fi
 
